@@ -1,6 +1,9 @@
+import time
+
+import os
 from flask import (Blueprint, render_template, request,
                    send_from_directory, jsonify)
-import os
+
 from utils.file_handler import download_file as download
 
 frontend = Blueprint('frontend', __name__)
@@ -20,6 +23,7 @@ def download_file():
     download(url, filename)
     print('**** before download')
     print(os.listdir('downloads'))
+    time.sleep(4)
     # return send_from_directory(directory=os.path.join('downloads'),
     #                            filename=filename)
     return jsonify({'message': 'Downloaded %s' % filename})
