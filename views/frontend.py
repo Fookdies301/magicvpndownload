@@ -17,6 +17,6 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
-    return send_file(os.path.join('/app', filename),
+    return send_file(os.path.join('/app/downloads', filename),
                      as_attachment=True, add_etags=True,
                      attachment_filename=filename)
