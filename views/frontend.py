@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, send_file
-
+from flask import Blueprint, render_template, request, send_file, jsonify
+import os
 from utils.file_handler import download_file as download
 
 frontend = Blueprint('frontend', __name__)
@@ -14,7 +14,9 @@ def index():
 def download_file():
     url = request.form.get('url_to_download')
     filename = request.form.get('file_name')
+    if url and filename:
+        return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
-    return 'Downloaded'
-    # return send_file(scraped_data_file, as_attachment=True, add_etags=True,
-    #                  attachment_filename=filename)
+    return send_file(os.path.join('/app', filename),
+                     as_attachment=True, add_etags=True,
+                     attachment_filename=filename)
