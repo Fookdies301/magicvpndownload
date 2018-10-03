@@ -14,22 +14,12 @@ def index():
     return render_template('index.html')
 
 
-@frontend.route('/download_file', methods=['GET', 'POST'])
+@frontend.route('/download_file', methods=['GET'])
 def download_file():
     filename = request.args.get('file_name')
     url = request.args.get('download_url')
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     download(url, filename)
-    print('**** before download')
-    print(os.listdir('downloads'))
-    time.sleep(5)
     return send_from_directory(directory=os.path.join('downloads'),
                                filename=filename)
-    # return jsonify({'message': 'Downloaded %s' % filename})
-
-
-@frontend.route('/test', methods=['GET', 'POST'])
-def test():
-    return send_from_directory(directory=os.path.join('downloads'),
-                               filename='.gitkeep')
