@@ -13,6 +13,7 @@ def download_file(url, filename):
         # Check if the response is ok (200)
         if response.status_code == 200:
             # Open file and write the content
+            filename = os.path.join('downloads', filename)
             with open(filename, 'wb') as file:
                 # A chunk of 128 bytes
                 for chunk in response:

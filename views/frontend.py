@@ -24,5 +24,6 @@ def download_file():
     time.sleep(8)
     # return send_from_directory(directory=os.path.join('downloads'),
     #                            filename=filename)
+    print(os.path.join('downloads', filename))
     return send_file(os.path.join('downloads', filename), as_attachment=True,
                      add_etags=True, attachment_filename=filename)
