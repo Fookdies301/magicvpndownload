@@ -21,5 +21,6 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     download(url, filename)
+    time.sleep(8)
     return send_from_directory(directory=os.path.join('downloads'),
                                filename=filename)
