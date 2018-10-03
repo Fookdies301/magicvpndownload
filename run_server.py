@@ -14,7 +14,7 @@ runs the flask app
 app = create_app('etc.settings')
 logging.root.setLevel(logging.DEBUG)
 logging.disable(0)
-app.run('0.0.0.0')
+# app.run('0.0.0.0')
 # app = DispatcherMiddleware(app, {'/main': app})
 #
 #
