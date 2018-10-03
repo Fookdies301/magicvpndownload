@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, send_file
 
 from utils.file_handler import download_file as download
 
@@ -12,8 +12,9 @@ def index():
 
 @frontend.route('/download_file', methods=['GET', 'POST'])
 def download_file():
-    print(request.form.get('url_to_download'))
-    url = 'https://www.dmepdac.com/docs/crosswalk/october_18/2018-10-05XWalkFinalVersion.xlsx'
-    filename = url.rsplit('/', 1)[1]
+    url = request.form.get('url_to_download')
+    filename = request.form.get('file_name')
     download(url, filename)
     return 'Downloaded'
+    # return send_file(scraped_data_file, as_attachment=True, add_etags=True,
+    #                  attachment_filename=filename)
