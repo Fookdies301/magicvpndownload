@@ -18,5 +18,7 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
+    print('**** before download')
+    print(os.listdir('downloads'))
     return send_from_directory(directory=os.path.join('downloads'),
                                filename=filename)
