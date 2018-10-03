@@ -27,3 +27,10 @@ def download_file():
     print(os.path.join('downloads', filename))
     return send_file(os.path.join('downloads', filename), as_attachment=True,
                      add_etags=True, attachment_filename=filename)
+
+
+@frontend.route('/test', methods=['GET'])
+def test():
+    filename = request.args.get('file_name')
+    return send_file(os.path.join('downloads', filename), as_attachment=True,
+                     add_etags=True, attachment_filename=filename)
