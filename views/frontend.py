@@ -20,5 +20,12 @@ def download_file():
     download(url, filename)
     print('**** before download')
     print(os.listdir('downloads'))
+    # return send_from_directory(directory=os.path.join('downloads'),
+    #                            filename=filename)
+    return jsonify({'message': 'Downloaded %s' % filename})
+
+
+@frontend.route('/test', methods=['GET', 'POST'])
+def test():
     return send_from_directory(directory=os.path.join('downloads'),
-                               filename=filename)
+                               filename='.gitkeep')
