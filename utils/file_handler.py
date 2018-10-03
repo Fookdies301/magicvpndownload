@@ -19,3 +19,5 @@ def download_file(url, filename):
             for chunk in response:
                 file.write(chunk)
     print(os.listdir('.'))
+    print("******")
+    print(os.system('pwd'))
