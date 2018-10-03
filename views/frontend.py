@@ -18,12 +18,13 @@ def index():
 def download_file():
     url = request.form.get('url_to_download')
     filename = request.form.get('file_name')
+    print(request.args.get('download_url'))
     if not (url and filename):
         return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
     print('**** before download')
     print(os.listdir('downloads'))
-    time.sleep(4)
+    time.sleep(5)
     return send_from_directory(directory=os.path.join('downloads'),
                                filename=filename)
     # return jsonify({'message': 'Downloaded %s' % filename})
