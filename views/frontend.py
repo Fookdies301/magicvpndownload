@@ -2,7 +2,7 @@ import time
 
 import os
 from flask import (Blueprint, render_template, request,
-                   send_from_directory, jsonify)
+                   send_from_directory, jsonify, send_file)
 
 from utils.file_handler import download_file as download
 
@@ -22,5 +22,7 @@ def download_file():
         return jsonify({'message': 'Illegal input fields'})
     download(url, filename)
     time.sleep(8)
-    return send_from_directory(directory=os.path.join('downloads'),
-                               filename=filename)
+    # return send_from_directory(directory=os.path.join('downloads'),
+    #                            filename=filename)
+    return send_file(os.path.join('downloads', filename), as_attachment=True,
+                     add_etags=True, attachment_filename=filename)
