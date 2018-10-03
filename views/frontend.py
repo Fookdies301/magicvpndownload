@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, send_file, jsonify
+from flask import (Blueprint, render_template, request,
+                   send_from_directory, jsonify)
 import os
 from utils.file_handler import download_file as download
 
@@ -17,6 +18,5 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
-    return send_file(os.path.join('downloads', filename),
-                     as_attachment=True, add_etags=True,
-                     attachment_filename=filename)
+    return send_from_directory(directory=os.path.join('downloads'),
+                               filename=filename)
