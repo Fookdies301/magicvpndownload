@@ -24,9 +24,9 @@ def download_file():
     print('**** before download')
     print(os.listdir('downloads'))
     time.sleep(4)
-    # return send_from_directory(directory=os.path.join('downloads'),
-    #                            filename=filename)
-    return jsonify({'message': 'Downloaded %s' % filename})
+    return send_from_directory(directory=os.path.join('downloads'),
+                               filename=filename)
+    # return jsonify({'message': 'Downloaded %s' % filename})
 
 
 @frontend.route('/test', methods=['GET', 'POST'])
