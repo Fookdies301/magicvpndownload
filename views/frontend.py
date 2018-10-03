@@ -14,7 +14,7 @@ def index():
 def download_file():
     url = request.form.get('url_to_download')
     filename = request.form.get('file_name')
-    if url and filename:
+    if not (url and filename):
         return jsonify({'message': 'Illegal input fileds'})
     download(url, filename)
     return send_file(os.path.join('/app', filename),
