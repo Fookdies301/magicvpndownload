@@ -1,0 +1,9 @@
+gevent
+greenlet
+gunicorn
+requests
+urllib3
+Flask
+openpyxl
+pandas
+xlrd
