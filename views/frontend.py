@@ -8,7 +8,6 @@ from utils.file_handler import download_file as download
 
 frontend = Blueprint('frontend', __name__)
 
-
 @frontend.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -34,9 +33,13 @@ def test():
     print(os.listdir('downloads'))
     abs_path = os.path.join('/app/downloads', filename)
     print(abs_path)
-    return send_file(abs_path,
-                     mimetype='application/vnd.ms-excel',
-                     attachment_filename=filename,
-                     as_attachment=True)
+    scraped_data_file = os.path.join('app', 'downloads',
+                                     '2018-10-05XWalkFinalVersion.xlsx')
+    return send_file(scraped_data_file, as_attachment=True, add_etags=True,
+                     attachment_filename="test_scraped_output.xlsx")
+    # return send_file(abs_path,
+    #                  mimetype='application/vnd.ms-excel',
+    #                  attachment_filename=filename,
+    #                  as_attachment=True)
     # return send_file(abs_path, as_attachment=True,
     #                  add_etags=True, attachment_filename=filename)
