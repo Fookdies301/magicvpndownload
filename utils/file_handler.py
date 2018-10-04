@@ -2,6 +2,8 @@ import os
 import requests
 import dropbox
 from dropbox.files import WriteMode
+import threading
+import time
 
 
 def download_file(url, filename):
@@ -39,4 +41,21 @@ def upload_file(file_path):
                                    mode=WriteMode('overwrite'))
     f.close()
     print('Response = %r' % response)
+    t1 = threading.Thread(target=remove_file, args=(client, remote_file_path))
+    t1.start()
     return client.files_get_temporary_link(remote_file_path).link
+
+
+def remove_file(client, filepath):
+    counter = 30
+    while counter > 1:
+        time.sleep(1)
+        counter -= 1
+        print('Deleting in %d seconds' % counter)
+    client.files_delete_v2(filepath)
+
+
+
+
+if __name__ == '__main__':
+    remove_file(None, None)
