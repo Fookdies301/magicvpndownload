@@ -34,7 +34,7 @@ def upload_file(file_path):
     client = dropbox.Dropbox(token)
     f = open(file_path, 'rb')
     filename = file_path.rsplit('/', 1)[-1]
-    remote_file_path = f'/{filename}'
+    remote_file_path = '/' + filename
     response = client.files_upload(f.read(), remote_file_path,
                                    mode=WriteMode('overwrite'))
     f.close()
