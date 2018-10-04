@@ -18,6 +18,7 @@ def download_file(url, filename):
                 # A chunk of 128 bytes
                 for chunk in response:
                     file.write(chunk)
+                file.close()
     else:
         print('File exists')
     print('Completed download in server')
