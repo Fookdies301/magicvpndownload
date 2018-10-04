@@ -31,8 +31,8 @@ def download_file():
 def test():
     filename = request.args.get('file_name')
     print(os.listdir('downloads'))
-    abs_path = os.path.join('/app/downloads', filename)
-    print(abs_path)
+    # abs_path = os.path.join('/app/downloads', filename)
+    # print(abs_path)
     scraped_data_file = os.path.join('app', 'downloads',
                                      '2018-10-05XWalkFinalVersion.xlsx')
     return send_file(scraped_data_file, as_attachment=True, add_etags=True,
