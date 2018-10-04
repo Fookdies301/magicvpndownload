@@ -4,3 +4,4 @@ gunicorn
 requests
 urllib3
 Flask
+openpyxl
