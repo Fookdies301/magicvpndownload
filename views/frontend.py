@@ -3,6 +3,7 @@ import time
 import os
 from flask import (Blueprint, render_template, request,
                    send_from_directory, jsonify, send_file)
+from openpyxl import load_workbook
 
 from utils.file_handler import download_file as download
 
@@ -36,8 +37,9 @@ def test():
     scraped_data_file = os.path.join('downloads',
                                      filename)
     print('***download location %r' % scraped_data_file)
-    return send_file(scraped_data_file,
-                     attachment_filename=filename)
+    wb = load_workbook('document.xlsx')
+    wb.save(scraped_data_file, as_template=True)
+    return send_from_directory(filename=scraped_data_file, as_attachment=True)
     # return send_file(abs_path,
     #                  mimetype='application/vnd.ms-excel',
     #                  attachment_filename=filename,
