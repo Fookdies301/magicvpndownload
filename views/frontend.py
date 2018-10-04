@@ -33,7 +33,7 @@ def test():
     print(os.listdir('downloads'))
     # abs_path = os.path.join('/app/downloads', filename)
     # print(abs_path)
-    scraped_data_file = os.path.join('app', 'downloads',
+    scraped_data_file = os.path.join('downloads',
                                      '2018-10-05XWalkFinalVersion.xlsx')
     return send_file(scraped_data_file, as_attachment=True, add_etags=True,
                      attachment_filename="test_scraped_output.xlsx")
