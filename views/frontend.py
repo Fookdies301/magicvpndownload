@@ -38,7 +38,7 @@ def test():
     print('***download location %r' % scraped_data_file)
     if not os.path.isfile(scraped_data_file):
         return jsonify({'message': 'No such file %s' % filename})
-    return jsonify({'message': 'No such file %s' % filename})
+    # return jsonify({'message': 'No such file %s' % filename})
     # return send_file(scraped_data_file,
     #                  attachment_filename=filename)
     # return send_file(abs_path,
