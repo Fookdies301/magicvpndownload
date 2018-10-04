@@ -47,7 +47,7 @@ def upload_file(file_path):
 
 
 def remove_file(client, filepath):
-    counter = os.environ.get('DELETE_IN_SECONDS', 30)
+    counter = int(os.environ.get('DELETE_IN_SECONDS', 30))
     while counter > 1:
         time.sleep(1)
         counter -= 1
