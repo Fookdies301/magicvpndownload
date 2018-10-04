@@ -35,7 +35,8 @@ def test():
     # print(abs_path)
     scraped_data_file = os.path.join('downloads',
                                      '2018-10-05XWalkFinalVersion.xlsx')
-    return send_file(scraped_data_file, as_attachment=True, add_etags=True,
+    print('***download location')
+    return send_file(scraped_data_file,
                      attachment_filename="test_scraped_output.xlsx")
     # return send_file(abs_path,
     #                  mimetype='application/vnd.ms-excel',
