@@ -21,7 +21,7 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     download(url, filename)
-    time.sleep(8)
+    # time.sleep(8)
     # return send_from_directory(directory=os.path.join('downloads'),
     #                            filename=filename)
     print(os.path.join('downloads', filename))
@@ -32,5 +32,6 @@ def download_file():
 @frontend.route('/test', methods=['GET'])
 def test():
     filename = request.args.get('file_name')
+    print(os.listdir('downloads'))
     return send_file(os.path.join('downloads', filename), as_attachment=True,
                      add_etags=True, attachment_filename=filename)
