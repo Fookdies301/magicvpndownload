@@ -1,8 +1,6 @@
-import time
-
 import os
 from flask import (Blueprint, render_template, request,
-                   send_from_directory, jsonify, send_file)
+                   jsonify)
 
 from utils.file_handler import download_file as download
 
