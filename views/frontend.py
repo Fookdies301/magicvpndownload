@@ -25,7 +25,7 @@ def download_file():
     # return send_from_directory(directory=os.path.join('downloads'),
     #                            filename=filename)
     print(os.path.join('downloads', filename))
-    return {'message': 'Downloaded'}
+    return jsonify({'message': 'Downloaded'})
 
 
 @frontend.route('/test', methods=['GET'])
