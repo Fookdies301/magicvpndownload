@@ -34,5 +34,9 @@ def test():
     print(os.listdir('downloads'))
     abs_path = os.path.join('/app/downloads', filename)
     print(abs_path)
-    return send_file(abs_path, as_attachment=True,
-                     add_etags=True, attachment_filename=filename)
+    return send_file(abs_path,
+                     mimetype='application/vnd.ms-excel',
+                     attachment_filename=filename,
+                     as_attachment=True)
+    # return send_file(abs_path, as_attachment=True,
+    #                  add_etags=True, attachment_filename=filename)
