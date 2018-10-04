@@ -32,5 +32,7 @@ def download_file():
 def test():
     filename = request.args.get('file_name')
     print(os.listdir('downloads'))
-    return send_file(os.path.join('downloads', filename), as_attachment=True,
+    abs_path = os.path.join('downloads', filename)
+    print(abs_path)
+    return send_file(abs_path, as_attachment=True,
                      add_etags=True, attachment_filename=filename)
