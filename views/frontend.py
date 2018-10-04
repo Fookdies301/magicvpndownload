@@ -1,4 +1,3 @@
-import os
 from flask import (Blueprint, render_template, request,
                    jsonify)
 
@@ -20,4 +19,3 @@ def download_file():
         return jsonify({'message': 'Illegal input fields'})
     temp_link = download(url, filename)
     return jsonify({'message': 'Downloaded', 'file_link': temp_link})
-
