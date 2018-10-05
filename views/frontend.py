@@ -18,4 +18,6 @@ def download_file():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     temp_link = download(url, filename)
+    if not temp_link:
+        return jsonify({'message': 'Incorrect resource'})
     return jsonify({'message': 'Downloaded', 'file_link': temp_link})

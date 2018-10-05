@@ -25,6 +25,8 @@ def download_file(url, filename):
                     file.write(chunk)
                 file.close()
             temp_link = upload_file(filename)
+        else:
+            return False
     else:
         print('File exists')
     print('Completed download in server')
