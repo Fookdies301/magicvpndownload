@@ -1,9 +1,10 @@
+import time
+
+import dropbox
 import os
 import requests
-import dropbox
-from dropbox.files import WriteMode
 import threading
-import time
+from dropbox.files import WriteMode
 
 
 def download_file(url, filename):
