@@ -1,15 +1,22 @@
-from flask import (Blueprint, request, jsonify)
+from flask import (Blueprint, request, jsonify, render_template)
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 from utils.file_handler import download_file
 
 frontend = Blueprint('frontend', __name__)
 
 
-# @frontend.route('/', methods=['GET', 'POST'])
-# def index():
-#     return render_template('index.html')
+limiter = Limiter(frontend, key_func=get_remote_address,
+                  default_limits=["1 per minute"])
 
 
+@frontend.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
+
+
+@limiter.limit("")
 @frontend.route('/download', methods=['GET'])
 def download():
     filename = request.args.get('file_name')

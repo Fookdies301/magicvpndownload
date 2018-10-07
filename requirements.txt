@@ -8,3 +8,4 @@ openpyxl
 pandas
 xlrd
 dropbox
+flask_limiter
