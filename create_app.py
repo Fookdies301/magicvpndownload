@@ -20,7 +20,7 @@ def create_app(config_filename):
     limiter = Limiter(app, key_func=get_remote_address,
                       default_limits=["5 per minute"])
 
-    return limiter
+    return app
 
 
 def _configure_logging(app):
