@@ -16,16 +16,16 @@ def index():
     return render_template('index.html')
 
 
-@frontend.route('/download', methods=['GET'])
+@frontend.route('/download', methods=['POST'])
 def download():
-    filename = request.args.get('file_name')
-    url = request.args.get('download_url')
+    filename = request.form.get('file_name')
+    url = request.form.get('download_url')
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     temp_link = download_file(url, filename)
     if not temp_link:
         return jsonify({'message': 'Incorrect resource'})
-    return jsonify({'message': 'Downloaded', 'file_link': temp_link})
+    return jsonify({'file_link': temp_link})
 
 
 @frontend.errorhandler(429)
