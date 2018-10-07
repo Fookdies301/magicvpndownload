@@ -6,9 +6,7 @@ import requests
 import threading
 from dropbox.files import WriteMode
 
-from utils.helper import max_file_size
-
-MAX_SIZE_IN_MB = os.environ.get('MAX_DOWNLOAD_SIZE', 10)
+from utils.helper import max_file_size_in_byte, max_file_size_in_mb
 
 
 def download_file(url, filename):
@@ -22,8 +20,9 @@ def download_file(url, filename):
         response = requests.get(url)
         # Check if the response is ok (200)
         if response.status_code == 200:
-            if float(response.headers.get('Content-Length')) > max_file_size():
-                return 'Only up to %s MB is allowed' % MAX_SIZE_IN_MB
+            if float(response.headers.get('Content-Length')) > \
+                    max_file_size_in_byte():
+                return 'Only up to %s MB is allowed' % max_file_size_in_mb()
             # Open file and write the content
             filename = os.path.join('downloads', filename)
             with open(filename, 'wb') as file:
