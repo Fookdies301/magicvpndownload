@@ -1,5 +1,7 @@
 from flask import (Blueprint, request, jsonify, render_template, make_response)
 from flask_limiter.util import get_remote_address
+
+from utils.email_sender import send_email
 from utils.file_handler import download_file
 
 frontend = Blueprint('frontend', __name__)
@@ -16,15 +18,14 @@ def download():
     url = request.form.get('download_url')
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
-    temp_link = download_file(url, filename, get_remote_address())
+    temp_link = download_file(url, filename)
     if not temp_link:
         return jsonify({'message': 'Incorrect resource'})
+    send_email(message='Generated file_link: %s' % temp_link,
+               ip_address=get_remote_address())
     return jsonify({'file_link': temp_link})
 
 
 @frontend.errorhandler(429)
 def ratelimit_handler(e):
-    return make_response(
-            jsonify(error="You have clearly exceeded %s" % e.description)
-            , 429
-    )
+    return make_response(jsonify(error="Error=%s" % e.description), 429)
