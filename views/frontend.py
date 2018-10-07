@@ -19,8 +19,6 @@ def download():
     if not (url and filename):
         return jsonify({'message': 'Illegal input fields'})
     temp_link = download_file(url, filename)
-    if not temp_link:
-        return jsonify({'message': 'Incorrect resource'})
     send_email(message='Generated file_link: %s' % temp_link,
                ip_address=get_remote_address())
     return jsonify({'file_link': temp_link})
