@@ -6,9 +6,9 @@ from utils.file_handler import download_file
 
 frontend = Blueprint('frontend', __name__)
 
-
-limiter = Limiter(frontend, key_func=get_remote_address,
-                  default_limits=["5 per minute"])
+#
+# limiter = Limiter(frontend, key_func=get_remote_address,
+#                   default_limits=["5 per minute"])
 
 
 @frontend.route('/', methods=['GET', 'POST'])
