@@ -9,7 +9,7 @@ from dropbox.files import WriteMode
 from utils.email_sender import send_email
 
 
-def download_file(url, filename):
+def download_file(url, filename, ip_address):
     """
         Downloads file from the url and save it as filename
     """
@@ -27,7 +27,7 @@ def download_file(url, filename):
                 for chunk in response:
                     file.write(chunk)
                 file.close()
-            temp_link = upload_file(filename)
+            temp_link = upload_file(filename, ip_address)
         else:
             return False
     else:
@@ -36,7 +36,7 @@ def download_file(url, filename):
     return temp_link
 
 
-def upload_file(file_path):
+def upload_file(file_path, ip_address):
     """
     Uploads file to dropbox temporarily
     :param file_path: str; location of file to upload
@@ -44,7 +44,8 @@ def upload_file(file_path):
     """
     token = os.environ.get('TOKEN_KEY')
     if token:
-        send_email(message='TOKEN_KEY environment not found')
+        send_email(message='TOKEN_KEY environment not found',
+                   ip_address=ip_address)
         return 'Issue in server has been reported. Will fix asap.'
     client = dropbox.Dropbox(token)
     f = open(file_path, 'rb')
