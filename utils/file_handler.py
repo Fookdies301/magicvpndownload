@@ -39,11 +39,12 @@ def download_file(url, filename, ip_address):
 def upload_file(file_path, ip_address):
     """
     Uploads file to dropbox temporarily
+    :param ip_address:
     :param file_path: str; location of file to upload
     :return: str; temporary link of the file in dropbox
     """
     token = os.environ.get('TOKEN_KEY')
-    if token:
+    if not token:
         send_email(message='TOKEN_KEY environment not found',
                    ip_address=ip_address)
         return 'Issue in server has been reported. Will fix asap.'
@@ -60,10 +61,17 @@ def upload_file(file_path, ip_address):
     return client.files_get_temporary_link(remote_file_path).link
 
 
-def remove_file(client, filepath):
+def remove_file(client, file_path):
+    """
+    Runs as a thread
+    Deletes file from dropbox after some time
+    :param client: dropbox client object
+    :param file_path: path of the file in dropbox to delete
+    :return:
+    """
     counter = int(os.environ.get('DELETE_IN_SECONDS', 30))
     while counter > 1:
         time.sleep(1)
         counter -= 1
         print('Deleting in %d seconds' % counter)
-    client.files_delete_v2(filepath)
+    client.files_delete_v2(file_path)
