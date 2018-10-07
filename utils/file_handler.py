@@ -42,7 +42,6 @@ def download_file(url, filename):
 def upload_file(file_path):
     """
     Uploads file to dropbox temporarily
-    :param ip_address:
     :param file_path: str; location of file to upload
     :return: str; temporary link of the file in dropbox
     """
