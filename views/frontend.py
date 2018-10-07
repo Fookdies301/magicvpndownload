@@ -1,4 +1,4 @@
-from flask import (Blueprint, request, jsonify, render_template)
+from flask import (Blueprint, request, jsonify, render_template, make_response)
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
@@ -26,3 +26,11 @@ def download():
     if not temp_link:
         return jsonify({'message': 'Incorrect resource'})
     return jsonify({'message': 'Downloaded', 'file_link': temp_link})
+
+
+@frontend.errorhandler(429)
+def ratelimit_handler(e):
+    return make_response(
+            jsonify(error="You have clearly exceeded %s" % e.description)
+            , 429
+    )
