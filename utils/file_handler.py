@@ -8,6 +8,8 @@ from dropbox.files import WriteMode
 
 from utils.helper import max_file_size
 
+MAX_SIZE_IN_MB = os.environ.get('MAX_DOWNLOAD_SIZE', 10)
+
 
 def download_file(url, filename):
     """
@@ -21,7 +23,7 @@ def download_file(url, filename):
         # Check if the response is ok (200)
         if response.status_code == 200:
             if float(response.headers.get('Content-Length')) > max_file_size():
-                return 'Only up to %s MB is allowed' % max_file_size()
+                return 'Only up to %s MB is allowed' % MAX_SIZE_IN_MB
             # Open file and write the content
             filename = os.path.join('downloads', filename)
             with open(filename, 'wb') as file:
