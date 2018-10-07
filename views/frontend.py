@@ -16,7 +16,6 @@ def index():
     return render_template('index.html')
 
 
-@limiter.limit("")
 @frontend.route('/download', methods=['GET'])
 def download():
     filename = request.args.get('file_name')
