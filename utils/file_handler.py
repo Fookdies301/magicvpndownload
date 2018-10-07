@@ -6,6 +6,8 @@ import requests
 import threading
 from dropbox.files import WriteMode
 
+from utils.email_sender import send_email
+
 
 def download_file(url, filename):
     """
@@ -35,7 +37,15 @@ def download_file(url, filename):
 
 
 def upload_file(file_path):
+    """
+    Uploads file to dropbox temporarily
+    :param file_path: str; location of file to upload
+    :return: str; temporary link of the file in dropbox
+    """
     token = os.environ.get('TOKEN_KEY')
+    if token:
+        send_email(message='TOKEN_KEY environment not found')
+        return 'Issue in server has been reported. Will fix asap.'
     client = dropbox.Dropbox(token)
     f = open(file_path, 'rb')
     filename = file_path.rsplit('/', 1)[-1]
