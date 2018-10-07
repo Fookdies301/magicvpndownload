@@ -2,6 +2,8 @@
 
 import logging
 from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 
 def create_app(config_filename):
@@ -15,7 +17,10 @@ def create_app(config_filename):
     # _configure_logging(app)
     from views.frontend import frontend
     app.register_blueprint(frontend)
-    return app
+    limiter = Limiter(app, key_func=get_remote_address,
+                      default_limits=["5 per minute"])
+
+    return limiter
 
 
 def _configure_logging(app):
