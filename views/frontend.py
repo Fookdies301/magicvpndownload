@@ -1,5 +1,6 @@
 from flask import (Blueprint, request, jsonify, render_template, make_response)
 from flask_limiter.util import get_remote_address
+from flask_cors import cross_origin
 
 from utils.email_sender import send_email
 from utils.file_handler import download_file
@@ -10,6 +11,12 @@ frontend = Blueprint('frontend', __name__)
 @frontend.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
+
+
+@frontend.route('/test', methods=['GET', 'POST'])
+@cross_origin()
+def test():
+    return jsonify({'test': 'success'})
 
 
 @frontend.route('/download', methods=['POST'])

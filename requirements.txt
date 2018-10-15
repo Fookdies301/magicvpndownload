@@ -9,3 +9,4 @@ pandas
 xlrd
 dropbox
 flask_limiter
+flask_cors

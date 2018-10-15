@@ -3,6 +3,7 @@
 from flask import Flask
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 
 
 def create_app(config_filename):
@@ -12,6 +13,7 @@ def create_app(config_filename):
     global app
 
     app = Flask(__name__)
+    cors = CORS(app)
     app.config.from_object(config_filename)
     from views.frontend import frontend
     app.register_blueprint(frontend)
