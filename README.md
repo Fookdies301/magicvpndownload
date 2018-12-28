@@ -12,3 +12,8 @@ Lets say you need to download files from a website that opens only in US locatio
 5. Free heroku server for deployment
 
 #### How to deploy ???
+- Fork it
+- Make necessary UI changes if you want
+- Create an app in heroku
+- Deploy using GitHub option in "Deployment method"; `https://dashboard.heroku.com/apps/<yourappname>/deploy/github`
+- Add your environment variables at `https://dashboard.heroku.com/apps/<yourappname>/settings`
