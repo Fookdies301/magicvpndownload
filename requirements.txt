@@ -3,7 +3,7 @@ greenlet
 gunicorn
 requests
 urllib3
-Flask
+Flask=1.0.2
 openpyxl
 pandas
 xlrd
