@@ -17,3 +17,4 @@ Lets say you need to download files from a website that opens only in US locatio
 - Create an app in heroku
 - Deploy using GitHub option in "Deployment method"; `https://dashboard.heroku.com/apps/<yourappname>/deploy/github`
 - Add your environment variables at `https://dashboard.heroku.com/apps/<yourappname>/settings`
+	- Necessary environment variables: APP_NAME, DELETE_IN_SECONDS, EMAIL_ADDRESS, EMAIL_PASSWORD, MAX_SIZE_IN_MB, RECEIVE_EMAIL_ADDRESS, TOKEN_KEY
